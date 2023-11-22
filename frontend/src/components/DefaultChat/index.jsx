@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import {
-  GithubLogo,
-  GitMerge,
-  EnvelopeSimple,
-  Plus,
-} from "@phosphor-icons/react";
-
-import NewWorkspaceModal, {
-  useNewWorkspaceModal,
-} from "../Modals/NewWorkspace";
-import paths from "../../utils/paths";
+import React, { useEffect, useState, useMemo } from "react";
+// ... rest of the imports
+export default function DefaultChatContainer() {
+  // ... rest of the code
+  const MESSAGES = useMemo(() => [
+    <React.Fragment>
+      // ...existing messages
+    </React.Fragment>,
+    // ... rest of the messages
+  ], []);
+  // ... rest of the code
+}
 import { isMobile } from "react-device-detect";
 import { SidebarMobileHeader } from "../Sidebar";
 import ChatBubble from "../ChatBubble";
