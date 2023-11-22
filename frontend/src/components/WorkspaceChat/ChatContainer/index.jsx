@@ -1,23 +1,23 @@
-import { useState, useEffect } from "react";
-import ChatHistory from "./ChatHistory";
-import PromptInput from "./PromptInput";
-import Workspace from "../../../models/workspace";
-import handleChat from "../../../utils/chat";
-import { isMobile } from "react-device-detect";
-import { SidebarMobileHeader } from "../../Sidebar";
-
-export default function ChatContainer({ workspace, knownHistory = [] }) {
-  const [message, setMessage] = useState("");
-  const [loadingResponse, setLoadingResponse] = useState(false);
-  const [chatHistory, setChatHistory] = useState(knownHistory);
-
-  const handleMessageChange = (event) => {
-    setMessage(event.target.value);
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (!message || message === "") return false;
+import { useState, useEffect, useCallback } from "react";
+//...
+const handleSubmit = useCallback(async (event) => {
+  event.preventDefault();
+  if (!message || message === "") return false;
+  const prevChatHistory = [
+    ...chatHistory,
+    { content: message, role: "user" },
+    {
+      content: "",
+      role: "assistant",
+      pending: true,
+      userMessage: message,
+      animate: true,
+    },
+  ];
+  setChatHistory(prevChatHistory);
+  setMessage("");
+  setLoadingResponse(true);
+}, [message, chatHistory]);
 
     const prevChatHistory = [
       ...chatHistory,
