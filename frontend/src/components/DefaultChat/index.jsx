@@ -308,29 +308,29 @@ export default function DefaultChatContainer() {
   ];
 
   useEffect(() => {
-    function processMsgs() {
-      if (!!window.localStorage.getItem("anythingllm_intro")) {
-        setMockMessages([...MESSAGES]);
-        return false;
-      } else {
-        setMockMessages([MESSAGES[0]]);
+      function processMsgs() {
+        if (!!window.localStorage.getItem("anythingllm_intro")) {
+          setMockMessages([...MESSAGES]);
+          return false;
+        } else {
+          setMockMessages([MESSAGES[0]]);
+        }
+  
+        var timer = 500;
+        var tempMessages = [];
+  
+        MESSAGES.map((child) => {
+          setTimeout(() => {
+            tempMessages.push(child);
+          }, timer);
+          timer += 2_500;
+        });
+        setMockMessages(tempMessages);
+        window.localStorage.setItem("anythingllm_intro", 1);
       }
-
-      var timer = 500;
-      var messages = [];
-
-      MESSAGES.map((child) => {
-        setTimeout(() => {
-          setMockMessages([...messages, child]);
-          messages.push(child);
-        }, timer);
-        timer += 2_500;
-      });
-      window.localStorage.setItem("anythingllm_intro", 1);
-    }
-
-    processMsgs();
-  }, []);
+  
+      processMsgs();
+    }, []);
 
   return (
     <div
