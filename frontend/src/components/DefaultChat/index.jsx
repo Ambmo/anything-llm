@@ -316,7 +316,7 @@ export default function DefaultChatContainer() {
         setMockMessages([MESSAGES[0]]);
       }
 
-      var timer = 500;
+      var messageDisplayDelay = 500;
       var messages = [];
 
       MESSAGES.map((child) => {
