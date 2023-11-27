@@ -16,7 +16,7 @@ function MultiUserSetup({ nextStep, prevStep }) {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    const data = {
+    const { username, password } = Object.fromEntries(formData);
       username: formData.get("username"),
       password: formData.get("password"),
     };
