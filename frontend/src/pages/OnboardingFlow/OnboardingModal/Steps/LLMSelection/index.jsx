@@ -65,27 +65,27 @@ function LLMSelection({ nextStep, prevStep, currentStep }) {
           </div>
           <div className="w-full flex md:flex-wrap overflow-x-scroll gap-4 max-w-[752px]">
             <input hidden={true} name="LLMProvider" value={llmChoice} />
-            <LLMProviderOption
-              name="OpenAI"
-              value="openai"
-              link="openai.com"
-              description="The standard option for most non-commercial use. Provides both chat and embedding."
-              checked={llmChoice === "openai"}
-              image={OpenAiLogo}
-              onClick={updateLLMChoice}
-            />
-            <LLMProviderOption
-              name="Azure OpenAI"
-              value="azure"
-              link="azure.microsoft.com"
-              description="The enterprise option of OpenAI hosted on Azure services. Provides both chat and embedding."
-              checked={llmChoice === "azure"}
-              image={AzureOpenAiLogo}
-              onClick={updateLLMChoice}
-            />
-            <LLMProviderOption
-              name="Anthropic Claude 2"
-              value="anthropic"
+            const options = [
+              { name: 'OpenAI', value: 'openai', link: 'openai.com', description: 'The standard option for most non-commercial use. Provides both chat and embedding.', image: OpenAiLogo },
+              { name: 'Azure OpenAI', value: 'azure', link: 'azure.microsoft.com', description: 'The enterprise option of OpenAI hosted on Azure services. Provides both chat and embedding.', image: AzureOpenAiLogo },
+              { name: 'Anthropic Claude 2', value: 'anthropic', link: 'anthropic.com', description: 'A friendly AI Assistant hosted by Anthropic. Provides chat services only!', image: AnthropicLogo },
+              { name: 'LM Studio', value: 'lmstudio', link: 'lmstudio.ai', description: 'Discover, download, and run thousands of cutting edge LLMs in a few clicks.', image: LMStudioLogo },
+              { name: 'Local AI', value: 'localai', link: 'localai.io', description: 'Run LLMs locally on your own machine.', image: LocalAiLogo }
+            ];
+            
+            // In the render method
+            {options.map(option => (
+              <LLMProviderOption
+                key={option.value}
+                name={option.name}
+                value={option.value}
+                link={option.link}
+                description={option.description}
+                checked={llmChoice === option.value}
+                image={option.image}
+                onClick={updateLLMChoice}
+              />
+            ))}
               link="anthropic.com"
               description="A friendly AI Assistant hosted by Anthropic. Provides chat services only!"
               checked={llmChoice === "anthropic"}
