@@ -30,12 +30,12 @@ function VectorDatabaseConnection({ nextStep, prevStep, currentStep }) {
     setVectorDB(selection);
   };
 
-  const handleSubmit = async (e, formElement) => {
+  const handleSubmit = async (e, formElement = e.target) => {
     e.preventDefault();
-    const form = formElement || e.target;
     const data = {};
-    const formData = new FormData(form);
-    for (var [key, value] of formData.entries()) data[key] = value;
+    const formData = new FormData(formElement);
+    // rest of the code
+  }
     const { error } = await System.updateSystem(data);
     if (error) {
       alert(`Failed to save settings: ${error}`, "error");
