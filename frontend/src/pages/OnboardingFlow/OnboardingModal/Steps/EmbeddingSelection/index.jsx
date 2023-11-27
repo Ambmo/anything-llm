@@ -10,17 +10,17 @@ import AzureAiOptions from "../../../../../components/EmbeddingSelection/AzureAi
 import LocalAiOptions from "../../../../../components/EmbeddingSelection/LocalAiOptions";
 
 function EmbeddingSelection({ nextStep, prevStep, currentStep }) {
-  const [embeddingChoice, setEmbeddingChoice] = useState("openai");
-  const [settings, setSettings] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const updateChoice = (selection) => {
-    setEmbeddingChoice(selection);
-  };
-
-  useEffect(() => {
-    async function fetchKeys() {
-      const _settings = await System.keys();
-      setSettings(_settings);
+  const OPENAI = "openai";
+  const AZURE = "azure";
+  const LOCALAI = "localai";
+  
+  setEmbeddingChoice(_settings?.EmbeddingEngine || OPENAI);
+  
+  checked={embeddingChoice === OPENAI}
+  
+  checked={embeddingChoice === AZURE}
+  
+  checked={embeddingChoice === LOCALAI}
       setEmbeddingChoice(_settings?.EmbeddingEngine || "openai");
       setLoading(false);
     }
