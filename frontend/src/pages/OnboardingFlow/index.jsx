@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import OnboardingModal, { OnboardingModalId } from "./OnboardingModal";
-import useLogo from "../../hooks/useLogo";
-import { isMobile } from "react-device-detect";
-
+import React, { useEffect, useState, useRef } from "react";
 export default function OnboardingFlow() {
   const { logo } = useLogo();
   const [modalVisible, setModalVisible] = useState(false);
-
+  const modalRef = useRef(null);
   useEffect(() => {
     if (modalVisible) {
-      document.getElementById(OnboardingModalId)?.showModal();
+      modalRef.current.showModal();
     }
+  }, [modalVisible]);
+  // Rest of the code...
+  {modalVisible && <OnboardingModal ref={modalRef} setModalVisible={setModalVisible} />}
+}
   }, [modalVisible]);
 
   function showModal() {
