@@ -21,20 +21,20 @@ const User = {
 
   update: async function (userId, updates = {}) {
     try {
-      // Rehash new password if it exists as update
-      // will be given to us as plaintext.
       if (updates.hasOwnProperty("password") && updates.password.length >= 8) {
         updates.password = bcrypt.hashSync(updates.password, 10);
       } else {
         delete updates.password;
       }
-
       await prisma.users.update({
         where: { id: parseInt(userId) },
         data: updates,
       });
       return { success: true, error: null };
     } catch (error) {
+      throw new Error(error.message);
+    }
+  }
       console.error(error.message);
       return { success: false, error: error.message };
     }
