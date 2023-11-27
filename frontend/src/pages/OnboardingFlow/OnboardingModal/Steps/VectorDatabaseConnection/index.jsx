@@ -35,7 +35,7 @@ function VectorDatabaseConnection({ nextStep, prevStep, currentStep }) {
     const form = formElement || e.target;
     const data = {};
     const formData = new FormData(form);
-    for (var [key, value] of formData.entries()) data[key] = value;
+    const data = Object.fromEntries(formData.entries());
     const { error } = await System.updateSystem(data);
     if (error) {
       alert(`Failed to save settings: ${error}`, "error");
