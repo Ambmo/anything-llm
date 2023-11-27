@@ -17,19 +17,19 @@ export default function OnboardingFlow() {
     setModalVisible(true);
   }
 
-  if(isMobile) {
-    return(
-      <div className="w-screen h-full bg-sidebar flex items-center justify-center">
-      <div className="w-fit p-20 py-24 border-2 border-slate-300/10 rounded-2xl bg-main-gradient shadow-lg">
+  function WelcomeMessage({ logo }) {
+    return (
+      <>
         <div className="text-white text-2xl font-base text-center">
           Welcome to
         </div>
         <img src={logo} alt="logo" className="w-80 mx-auto m-3 mb-11" />
-        <div className="flex justify-center items-center">
-          <p className="text-white text-xl italic text-center">
-            Please use a desktop browser to continue.
-          </p>
-        </div>
+      </>
+    );
+  }
+  
+  // In the render method
+  <WelcomeMessage logo={logo} />
       </div>
     </div>
     )
