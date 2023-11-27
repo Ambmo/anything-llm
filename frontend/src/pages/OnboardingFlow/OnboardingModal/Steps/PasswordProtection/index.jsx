@@ -19,7 +19,7 @@ function PasswordProtection({ nextStep, prevStep }) {
     });
 
     if (error) {
-      alert(`Failed to set password: ${error}`, "error");
+      displayError(`Failed to set password: ${error}`);
       return;
     }
 
