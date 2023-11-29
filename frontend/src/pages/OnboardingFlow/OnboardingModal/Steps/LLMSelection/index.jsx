@@ -1,18 +1,18 @@
-import React, { memo, useEffect, useState } from "react";
-import OpenAiLogo from "../../../../../media/llmprovider/openai.png";
-import AzureOpenAiLogo from "../../../../../media/llmprovider/azure.png";
-import AnthropicLogo from "../../../../../media/llmprovider/anthropic.png";
-import LMStudioLogo from "../../../../../media/llmprovider/lmstudio.png";
-import LocalAiLogo from "../../../../../media/llmprovider/localai.png";
-import System from "../../../../../models/system";
-import PreLoader from "../../../../../components/Preloader";
-import LLMProviderOption from "../../../../../components/LLMSelection/LLMProviderOption";
-import OpenAiOptions from "../../../../../components/LLMSelection/OpenAiOptions";
-import AzureAiOptions from "../../../../../components/LLMSelection/AzureAiOptions";
-import AnthropicAiOptions from "../../../../../components/LLMSelection/AnthropicAiOptions";
-import LMStudioOptions from "../../../../../components/LLMSelection/LMStudioOptions";
-import LocalAiOptions from "../../../../../components/LLMSelection/LocalAiOptions";
-
+import React, { memo, useEffect, useState, useMemo } from "react";
+function LLMSelection({ nextStep, prevStep, currentStep }) {
+  const memoizedCurrentStep = useMemo(() => currentStep, [currentStep]);
+  useEffect(() => {
+    async function fetchKeys() {
+      const _settings = await System.keys();
+      setSettings(_settings);
+      setLLMChoice(_settings?.LLMProvider);
+      setLoading(false);
+    }
+    if (memoizedCurrentStep === "llm_preference") {
+      fetchKeys();
+    }
+  }, [memoizedCurrentStep]);
+}
 function LLMSelection({ nextStep, prevStep, currentStep }) {
   const [llmChoice, setLLMChoice] = useState("openai");
   const [settings, setSettings] = useState(null);
