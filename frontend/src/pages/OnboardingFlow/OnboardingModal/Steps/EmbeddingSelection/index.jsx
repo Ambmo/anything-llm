@@ -30,9 +30,8 @@ function EmbeddingSelection({ nextStep, prevStep, currentStep }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const data = {};
     const formData = new FormData(form);
-    for (var [key, value] of formData.entries()) data[key] = value;
+    const data = Object.fromEntries(formData);
     const { error } = await System.updateSystem(data);
     if (error) {
       alert(`Failed to save LLM settings: ${error}`, "error");
@@ -40,6 +39,7 @@ function EmbeddingSelection({ nextStep, prevStep, currentStep }) {
     }
     nextStep("vector_database");
     return;
+  };
   };
 
   if (loading)
