@@ -21,11 +21,11 @@ function VectorDatabaseConnection({ nextStep, prevStep, currentStep }) {
       setVectorDB(_settings?.VectorDB || "lancedb");
       setLoading(false);
     }
-    if (currentStep === "vector_database") {
+    // Fetch the system keys once when the component mounts
+    if (!settings) {
       fetchKeys();
     }
-  }, [currentStep]);
-
+  }, []);
   const updateVectorChoice = (selection) => {
     setVectorDB(selection);
   };
