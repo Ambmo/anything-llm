@@ -12,7 +12,7 @@ export default function NewWorkspaceModal({ hideModal = noop }) {
     e.preventDefault();
     const data = {};
     const form = new FormData(formEl.current);
-    for (var [key, value] of form.entries()) data[key] = value;
+    const data = Object.fromEntries(form.entries());
     const { workspace, message } = await Workspace.new(data);
     if (!!workspace) {
       window.location.href = paths.workspace.chat(workspace.slug);
