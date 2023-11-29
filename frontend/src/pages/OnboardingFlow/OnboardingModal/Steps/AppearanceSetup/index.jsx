@@ -6,7 +6,7 @@ import { Plus } from "@phosphor-icons/react";
 import showToast from "../../../../../utils/toast";
 
 function AppearanceSetup({ prevStep, nextStep }) {
-  const { logo: _initLogo } = useLogo();
+  const _initLogo = useMemo(() => useLogo(), []);
   const [logo, setLogo] = useState("");
   const [isDefaultLogo, setIsDefaultLogo] = useState(true);
 
