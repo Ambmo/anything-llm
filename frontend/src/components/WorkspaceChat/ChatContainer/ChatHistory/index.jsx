@@ -1,9 +1,9 @@
 import HistoricalMessage from "./HistoricalMessage";
 import PromptReply from "./PromptReply";
-import { useEffect, useRef, useState } from "react";
-import { useManageWorkspaceModal } from "../../../Modals/MangeWorkspace";
-import ManageWorkspace from "../../../Modals/MangeWorkspace";
-import { ArrowDown } from "@phosphor-icons/react";
+import { useEffect, useRef, useState, useMemo } from "react";
+export default function ChatHistory({ history = [], workspace }) {
+  const history = useMemo(() => props.history, []);
+  // rest of the code...
 import debounce from "lodash.debounce";
 
 export default function ChatHistory({ history = [], workspace }) {
