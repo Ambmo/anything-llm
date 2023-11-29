@@ -123,7 +123,7 @@ const EMBEDDING_ENGINE_PRIVACY = {
   },
 };
 
-function DataHandling({ nextStep, prevStep, currentStep }) {
+const currentStep = useMemo(() => props.currentStep, []);
   const [llmChoice, setLLMChoice] = useState("openai");
   const [loading, setLoading] = useState(true);
   const [vectorDb, setVectorDb] = useState("pinecone");
