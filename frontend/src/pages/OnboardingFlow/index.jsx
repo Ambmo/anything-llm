@@ -13,9 +13,9 @@ export default function OnboardingFlow() {
     }
   }, [modalVisible]);
 
-  function showModal() {
+  const showModal = useCallback(() => {
     setModalVisible(true);
-  }
+  }, []);
 
   if (isMobile) {
     return (
